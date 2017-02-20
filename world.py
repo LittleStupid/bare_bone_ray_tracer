@@ -58,5 +58,5 @@ class World(object):
         image.save('code.jpg', 'jpeg')
 
 
-world = World()
-world.render_scene()
+# the_world = World()
+# world.render_scene()
