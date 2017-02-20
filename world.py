@@ -52,7 +52,7 @@ class World(object):
                 ray.setOriginXYZ(x, y, zw)
                 ray.setDirXYZ(0, 0, zdir)
                 # pixel = self.tracer.trace_ray(ray)
-                pixel = self.mul_tracer.trace_ray(ray)
+                pixel = self.mul_tracer.trace_ray(ray).color
                 draw.point((r, c), fill=(pixel.r, pixel.g, pixel.b))
 
         image.save('code.jpg', 'jpeg')

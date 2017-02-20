@@ -86,3 +86,15 @@ class Vector(object):
         self.x = self.x / length
         self.y = self.y / length
         self.z = self.z / length
+
+    def cross(self, that):
+        x = self.y * that.z - self.z * that.y
+        y = self.z * that.x - self.x * that.z
+        z = self.x * that.y - self.y * that.x
+
+        v = Vector()
+        v.x = x
+        v.y = y
+        v.z = z
+
+        return v

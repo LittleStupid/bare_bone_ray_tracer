@@ -1,5 +1,8 @@
 # from world import World
 from color import Color
+from shaderec import ShadeRec
+
+MAX_T = 9999999
 
 
 class SphereTracer(object):
@@ -21,11 +24,12 @@ class SpheresTracer(object):
         self.world = world
 
     def trace_ray(self, ray):
-        tmin = 9999999
-        color = Color()
+        tmin = MAX_T
+        rec = ShadeRec()
+        # color = Color()
         for sphere in self.world.spheres:
             result = sphere.hit(ray)
             if(result['hit'] == True):
                 if(result['tmin'] < tmin):
-                    color = sphere.color
-        return color
+                    rec.color = sphere.color
+        return rec
