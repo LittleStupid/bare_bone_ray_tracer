@@ -20,10 +20,12 @@ class Ray(object):
 
     def setDir(self, dir):
         self.dir.set(dir)
+        # self.dir.normalize()
 
     def setDirXYZ(self, x, y, z):
         self.dir.x = x
         self.dir.y = y
         self.dir.z = z
+        # self.dir.normalize()
 
 ray = Ray()

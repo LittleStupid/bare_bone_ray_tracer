@@ -1,4 +1,5 @@
 from err import InvalidTypeError
+import math
 
 
 def dot(a, b):
@@ -77,3 +78,11 @@ class Vector(object):
         self.x = that.x
         self.y = that.y
         self.z = that.z
+
+    def normalize(self):
+        length_sq = self * self
+        length = math.sqrt(length_sq)
+
+        self.x = self.x / length
+        self.y = self.y / length
+        self.z = self.z / length
