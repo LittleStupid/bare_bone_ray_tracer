@@ -23,6 +23,83 @@ class TestVector(unittest.TestCase):
         with self.assertRaises(InvalidTypeError):
             v.equal(4)
 
+    def test_set_vector(self):
+        v = Vector()
+
+        that = Vector()
+        that.x = 1.1
+        that.y = 2.2
+
+        v.set(that)
+
+        self.assertEqual(v.x, that.x)
+        self.assertEqual(v.y, that.y)
+        self.assertEqual(v.z, that.z)
+
+        self.assertEqual(v.x, 1.1)
+        self.assertEqual(v.y, 2.2)
+        self.assertEqual(v.z, 0.0)
+
+        self.assertTrue(v.equal(that))
+
+    def test_add(self):
+        v1 = Vector()
+        v1.x = 1
+        v1.y = 3
+
+        v2 = Vector()
+        v2.x = 8
+        v2.y = 9
+
+        v3 = v1 + v2
+        self.assertEqual(v3.x, 9)
+        self.assertEqual(v3.y, 12)
+        self.assertEqual(v3.z, 0)
+
+    def test_sub(self):
+        v1 = Vector()
+        v1.x = 100
+        v1.y = 50
+        v1.z = 20
+
+        v2 = Vector()
+        v2.x = 9
+        v2.y = 9
+        v2.z = 9
+
+        v3 = v1 - v2
+        self.assertEqual(v3.x, 91)
+        self.assertEqual(v3.y, 41)
+        self.assertEqual(v3.z, 11)
+
+    def test_dot(self):
+        v1 = Vector()
+        v1.x = 100
+        v1.y = 50
+        v1.z = 20
+
+        v2 = Vector()
+        v2.x = 9
+        v2.y = 9
+        v2.z = 9
+
+        v3 = v1 * v2
+        self.assertEqual(v3.x, 900)
+        self.assertEqual(v3.y, 450)
+        self.assertEqual(v3.z, 180)
+
+    def test_scale(self):
+        v1 = Vector()
+        v1.x = 100
+        v1.y = 50
+        v1.z = 20
+
+        scale = 2
+        v3 = v1 * scale
+        self.assertEqual(v3.x, 200)
+        self.assertEqual(v3.y, 100)
+        self.assertEqual(v3.z, 40)
+
 
 class TestColor(unittest.TestCase):
 
@@ -39,6 +116,51 @@ class TestRay(unittest.TestCase):
         ray = Ray()
         self.assertTrue(ray.origin.equal(Vector()))
         self.assertTrue(ray.dir.equal(Vector()))
+
+    def test_set_dir_vector(self):
+        ray = Ray()
+
+        v = Vector()
+        v.x = 1
+        v.y = 2
+        v.z = 3
+
+        ray.setDir(v)
+        self.assertTrue(ray.dir.equal(v))
+
+    def test_set_dir_xyz(self):
+        ray = Ray()
+
+        v = Vector()
+        v.x = 1
+        v.y = 2
+        v.z = 3
+
+        ray.setDirXYZ(1, 2, 3)
+        self.assertTrue(ray.dir.equal(v))
+
+    def test_set_origin_vector(self):
+        ray = Ray()
+
+        v = Vector()
+        v.x = 1
+        v.y = 2
+        v.z = 3
+
+        ray.setOrigin(v)
+        self.assertTrue(ray.origin.equal(v))
+
+    def test_set_origin_xyz(self):
+        ray = Ray()
+
+        v = Vector()
+        v.x = 1
+        v.y = 2
+        v.z = 3
+
+        ray.setOriginXYZ(1, 2, 3)
+        self.assertTrue(ray.origin.equal(v))
+
 
 if __name__ == '__main__':
     unittest.main()
