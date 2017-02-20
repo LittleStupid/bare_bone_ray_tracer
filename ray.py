@@ -7,6 +7,9 @@ class Ray(object):
         self.origin = Vector()
         self.dir = Vector()
 
+    # def __str__(self):
+    #     return 'Ray: %s' % self.origin
+
     def setOrigin(self, origin):
         self.origin.set(origin)
 

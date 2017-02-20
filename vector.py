@@ -2,13 +2,7 @@ from err import InvalidTypeError
 
 
 def dot(a, b):
-    result = Vector()
-
-    result.x = a.x * b.x
-    result.y = a.y * b.y
-    result.z = a.z * b.z
-
-    return result
+    return a.x * b.x + a.y * b.y + a.z * b.z
 
 
 def scale(a, scale):
@@ -27,6 +21,9 @@ class Vector(object):
         self.x = 0
         self.y = 0
         self.z = 0
+
+    def __str__(self):
+        return 'Vector: %s, %s, %s' % (self.x, self.y, self.z)
 
     def __add__(self, that):
         result = Vector()

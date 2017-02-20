@@ -2,8 +2,10 @@
 from vector import Vector
 from ray import Ray
 
+HIT_ERR = 0.0001
 
-class Plane(GeometricObject):
+
+class Plane(object):
 
     def __init__(self, pos, normal):
         self.pos = Vector()
@@ -13,7 +15,10 @@ class Plane(GeometricObject):
         self.normal.set(normal)
 
     def hit(self, ray):
-        pass
+        t = self.normal * (self.pos - ray.origin) / (self.normal * ray.dir)
 
-    def getSmallErr(self):
-        return 0.0001
+        if(t > HIT_ERR):
+            print(t)
+            return {'hit': True, 'tmin': t}
+
+        return {'hit': False}

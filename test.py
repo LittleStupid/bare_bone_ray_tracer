@@ -3,6 +3,8 @@ import unittest
 from vector import Vector
 from color import Color
 from ray import Ray
+from plane import Plane
+from sphere import Sphere
 from err import InvalidTypeError
 
 
@@ -83,10 +85,8 @@ class TestVector(unittest.TestCase):
         v2.y = 9
         v2.z = 9
 
-        v3 = v1 * v2
-        self.assertEqual(v3.x, 900)
-        self.assertEqual(v3.y, 450)
-        self.assertEqual(v3.z, 180)
+        r = v1 * v2
+        self.assertEqual(r, 900 + 450 + 180)
 
     def test_scale(self):
         v1 = Vector()
@@ -161,6 +161,42 @@ class TestRay(unittest.TestCase):
         ray.setOriginXYZ(1, 2, 3)
         self.assertTrue(ray.origin.equal(v))
 
+    def test_plane_hit(self):
+        ray = Ray()
+        ray.setOriginXYZ(10, 10, 10)
+        ray.setDirXYZ(0, 0, -1)
+
+        pos = Vector()
+        normal = Vector()
+        normal.z = 1
+        plane = Plane(pos, normal)
+
+        result = plane.hit(ray)
+
+        self.assertEqual(result['hit'], True)
+        self.assertEqual(result['tmin'], 10)
+
+    def test_sphere_hit(self):
+        ray = Ray()
+        ray.setOriginXYZ(0, 0, 10)
+        ray.setDirXYZ(0, 0, -1)
+
+        pos = Vector()
+        pos.x = pos.y = pos.z = 0
+        r = 1
+        sphere = Sphere(pos, r)
+
+        result = sphere.hit(ray)
+        self.assertEqual(result['hit'], True)
+        self.assertEqual(result['tmin'], 9)
+
+    def test_print_vector(self):
+        v = Vector()
+        v.x = 1
+        v.y = 2
+        v.z = 3
+
+        self.assertEqual(v.__str__(), 'Vector: 1, 2, 3')
 
 if __name__ == '__main__':
     unittest.main()
