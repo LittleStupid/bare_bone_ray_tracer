@@ -4,3 +4,5 @@ Bare Bone Ray Tracer with python3
     python camera.py
 
 camera.jpg is the output image.
+
+![image](camera.jpg)
