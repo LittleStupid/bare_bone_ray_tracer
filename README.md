@@ -1,5 +1,4 @@
-### Bare Bone Ray Tracer
-with python3
+Bare Bone Ray Tracer with python3
 
     pip install -r requirements.txt
     python camera.py
